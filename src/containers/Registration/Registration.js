@@ -22,7 +22,6 @@ class Registration extends Component {
     return prevState === stateObj ? null : stateObj;
   }
 
-
   render() {
     return (
       <div>
@@ -84,7 +83,7 @@ class Registration extends Component {
             <button type="button">Clear Values</button>
           </div>
         </form>
-        {this.showMessage()}
+        {this.state.showMessage}
       </div>
     );
   }
