@@ -14,21 +14,14 @@ class Registration extends Component {
     }
   }
 
-  // componentWillReceiveProps(nextProps, prevProps) {
-  //   if (nextProps.registrationInfo !== prevProps.registrationInfo) {
-  //     this.setState({
-  //       registrationMessage: nextProps.registrationInfo.message
-  //     });
-  //   }
-  // }
+  static getDerivedStateFromProps(nextProps, prevState) {
+    const stateObj = prevState;
+    if (nextProps.registrationInfo) {
+      stateObj.showMessage = nextProps.registrationInfo.message;
+    }
+    return prevState === stateObj ? null : stateObj;
+  }
 
-  // static getDerivedStateFromProps(nextProps, prevProps) {
-  //   if (nextProps.registrationInfo !== prevProps.registrationInfo) {
-  //     return {
-  //       registrationMessage: nextProps.registrationInfo.message
-  //     };
-  //   }
-  // }
 
   render() {
     return (
