@@ -12,8 +12,11 @@ export function registration(values) {
           payload: response
         });
       })
-      .catch(response => {
-        constants.generator('04', response.message, response.err);
+      .catch(error => {
+        dispatch({
+          type: constants.REGISTRATION,
+          payload: constants.generator('04', error.message, error.err)
+        });
       });
   };
 }

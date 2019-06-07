@@ -4,14 +4,13 @@ import { Field, reduxForm } from 'redux-form';
 import { registration } from '../../actions/user';
 
 class Registration extends Component {
+  
+  state = {
+    showMessage: null
+  };
+
   onSubmit(values) {
     this.props.registration(values);
-  }
-
-  showMessage() {
-    if (this.props.registrationInfo) {
-      return <div>{this.props.registrationInfo.message}</div>;
-    }
   }
 
   static getDerivedStateFromProps(nextProps, prevState) {
