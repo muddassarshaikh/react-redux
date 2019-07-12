@@ -7,6 +7,11 @@ export default function(state = {}, action) {
         ...state,
         registrationDetails: action.payload
       };
+    case constants.LOGIN:
+      return {
+        ...state,
+        loginDetails: action.payload
+      };
     default:
       return state;
   }
