@@ -6,11 +6,11 @@ import { login } from '../../actions/user';
 class Login extends Component {
   state = {
     showMessage: null
-  }
+  };
 
-  static getDerivedStateFromProps(nextProps, prevState){
+  static getDerivedStateFromProps(nextProps, prevState) {
     const stateObj = prevState;
-    if(nextProps.loginInfo) {
+    if (nextProps.loginInfo) {
       stateObj.showMessage = nextProps.loginInfo.message;
     }
     return prevState === stateObj ? null : stateObj;
@@ -23,7 +23,7 @@ class Login extends Component {
   render() {
     return (
       <div>
-        <form onSubmit={this.props.handleSubmit((event) => this.onSubmit(event))}>
+        <form onSubmit={this.props.handleSubmit(event => this.onSubmit(event))}>
           <div>
             <label>Email</label>
             <div>
@@ -52,7 +52,7 @@ Login = reduxForm({
 })(Login);
 
 Login = connect(
-  (state) => ({
+  state => ({
     loginInfo: state.user.loginDetails
   }),
   { login }

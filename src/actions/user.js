@@ -2,17 +2,17 @@ import constants from './constants';
 import axios from '../axios';
 
 export function registration(values) {
-  return (dispatch) => {
+  return dispatch => {
     axios
       .post('/user/registration', values)
-      .then((response) => {
+      .then(response => {
         response = response.data;
         dispatch({
           type: constants.REGISTRATION,
           payload: response
         });
       })
-      .catch((error) => {
+      .catch(error => {
         dispatch({
           type: constants.REGISTRATION,
           payload: constants.generator('04', error.message, error.err)
@@ -22,17 +22,17 @@ export function registration(values) {
 }
 
 export function login(values) {
-  return (dispatch) => {
+  return dispatch => {
     axios
       .post('/user/login', values)
-      .then((response) => {
+      .then(response => {
         response = response.data;
         dispatch({
           type: constants.LOGIN,
           payload: response
         });
       })
-      .catch((error) => {
+      .catch(error => {
         dispatch({
           type: constants.LOGIN,
           payload: constants.generator('04', error.message, error.err)
@@ -47,5 +47,5 @@ export function AuthError() {
       type: constants.AUTHENTICATION_ERROR,
       payload: true
     });
-  }
+  };
 }
