@@ -2,50 +2,55 @@ import constants from './constants';
 import axios from '../axios';
 
 export function registration(values) {
-  return dispatch => {
+  return (dispatch) => {
     axios
       .post('/user/registration', values)
-      .then(response => {
+      .then((response) => {
         response = response.data;
         dispatch({
           type: constants.REGISTRATION,
-          payload: response
+          payload: response,
         });
       })
-      .catch(error => {
+      .catch((error) => {
         dispatch({
           type: constants.REGISTRATION,
-          payload: constants.generator('04', error.message, error.err)
+          payload: constants.generator('04', error.message, error.err),
         });
       });
   };
 }
 
 export function login(values) {
-  return dispatch => {
+  return (dispatch) => {
     axios
       .post('/user/login', values)
-      .then(response => {
+      .then((response) => {
         response = response.data;
+
+        if (response.statusCode === 200) {
+          sessionStorage.setItem('token', response.token);
+        }
+
         dispatch({
           type: constants.LOGIN,
-          payload: response
+          payload: response,
         });
       })
-      .catch(error => {
+      .catch((error) => {
         dispatch({
           type: constants.LOGIN,
-          payload: constants.generator('04', error.message, error.err)
+          payload: constants.generator('04', error.message, error.err),
         });
       });
   };
 }
 
 export function AuthError() {
-  return dispatch => {
+  return (dispatch) => {
     dispatch({
       type: constants.AUTHENTICATION_ERROR,
-      payload: true
+      payload: true,
     });
   };
 }

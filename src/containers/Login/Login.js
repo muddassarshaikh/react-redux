@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
 import { login } from '../../actions/user';
+import { Redirect } from 'react-router-dom';
 
 class Login extends Component {
   state = {
@@ -21,6 +22,9 @@ class Login extends Component {
   }
 
   render() {
+    if (sessionStorage.getItem('token')) {
+      return <Redirect to="/dashboard" />;
+    }
     return (
       <div>
         <form onSubmit={this.props.handleSubmit((event) => this.onSubmit(event))}>
