@@ -5,7 +5,7 @@ import { login } from '../../actions/user';
 
 class Login extends Component {
   state = {
-    showMessage: null
+    showMessage: null,
   };
 
   static getDerivedStateFromProps(nextProps, prevState) {
@@ -23,17 +23,17 @@ class Login extends Component {
   render() {
     return (
       <div>
-        <form onSubmit={this.props.handleSubmit(event => this.onSubmit(event))}>
+        <form onSubmit={this.props.handleSubmit((event) => this.onSubmit(event))}>
           <div>
             <label>Email</label>
             <div>
-              <Field name="email" component="input" type="email" placeholder="Email" />
+              <Field name="emailAddress" component="input" type="email" placeholder="Email" />
             </div>
           </div>
           <div>
             <label>Password</label>
             <div>
-              <Field name="password" component="input" type="password" placeholder="Password" />
+              <Field name="userPassword" component="input" type="password" placeholder="Password" />
             </div>
           </div>
           <div>
@@ -48,12 +48,12 @@ class Login extends Component {
 }
 
 Login = reduxForm({
-  form: 'LoginForm'
+  form: 'LoginForm',
 })(Login);
 
 Login = connect(
-  state => ({
-    loginInfo: state.user.loginDetails
+  (state) => ({
+    loginInfo: state.user.loginDetails,
   }),
   { login }
 )(Login);
